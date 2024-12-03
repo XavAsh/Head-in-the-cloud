@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/XavAsh/Head-in-the-clouds.git/static/css/main.cf1cbc75.css",
+    "main.js": "/XavAsh/Head-in-the-clouds.git/static/js/main.659ab0b3.js",
+    "static/js/453.81420017.chunk.js": "/XavAsh/Head-in-the-clouds.git/static/js/453.81420017.chunk.js",
+    "index.html": "/XavAsh/Head-in-the-clouds.git/index.html",
+    "main.cf1cbc75.css.map": "/XavAsh/Head-in-the-clouds.git/static/css/main.cf1cbc75.css.map",
+    "main.659ab0b3.js.map": "/XavAsh/Head-in-the-clouds.git/static/js/main.659ab0b3.js.map",
+    "453.81420017.chunk.js.map": "/XavAsh/Head-in-the-clouds.git/static/js/453.81420017.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf1cbc75.css",
+    "static/js/main.659ab0b3.js"
+  ]
+}
