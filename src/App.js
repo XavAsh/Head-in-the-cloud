@@ -12,12 +12,19 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-        <h1>Head in the Clouds</h1>
-        <p>Welcome to the Head in the Clouds project!</p>
-        <>
-          <button onClick={handleRollDice}>Roll Dice</button>
-        </>
-        <div id="dice-result">
+        <h1 className="App-header-title">Head in the Clouds</h1>
+        <p className="App-header-subtitle">
+          Welcome to the Head in the Clouds project!
+        </p>
+        <div className="App-header-actions">
+          <button
+            className="App-header-actions-roll-dice-button"
+            onClick={handleRollDice}
+          >
+            Roll Dice
+          </button>
+        </div>
+        <div id="dice-result" className="App-header-dice-result">
           {randomDie !== null && `You rolled a ${randomDie}`}
         </div>
       </div>

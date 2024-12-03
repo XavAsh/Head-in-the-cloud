@@ -1,14 +1,119 @@
-.App-header {
-  background-color: #9f2323;
-  min-height: 100vh;
+/* Base styles */
+.App {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #a204ce 0%, #c3cfe2 100%);
+  font-family: "Arial", sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.eee {
-  background-color: #681616;
+.App-header {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.App-header-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.App-header-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.App-header-actions {
+  margin-bottom: 20px;
+}
+
+.App-header-actions-roll-dice-button {
+  background: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.App-header-actions-roll-dice-button:hover {
+  background: #45a049;
+}
+
+.App-header-dice-result {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .App-header-title {
+    font-size: 1.8rem;
+  }
+
+  .App-header-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .App-header-dice-result {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header-title {
+    font-size: 1.5rem;
+  }
+
+  .App-header-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .App-header-dice-result {
+    font-size: 0.9rem;
+  }
+
+  .App-header-actions-roll-dice-button {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .App-header-title {
+    font-size: 1.2rem;
+  }
+
+  .App-header-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .App-header-dice-result {
+    font-size: 0.8rem;
+  }
+
+  .App-header-actions-roll-dice-button {
+    padding: 6px 12px;
+  }
 }
