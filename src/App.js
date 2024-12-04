@@ -7,6 +7,8 @@ function App() {
   const [selectedElement, setSelectedElement] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [hints, setHints] = useState([]);
+  const [currentHintIndex, setCurrentHintIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState("main");
 
   const elements = [
     "Algorithms",
@@ -254,13 +256,18 @@ function App() {
   };
 
   const handleShowHints = () => {
-    setShowHintForm(true);
+    if (!showHintForm) {
+      setShowHintForm(true);
+    } else {
+      setCurrentHintIndex((prevIndex) => Math.min(prevIndex + 1, hints.length - 1));
+    }
   };
 
   const handleElementChange = (e) => {
     setSelectedElement(e.target.value);
     setSelectedDifficulty("");
     setHints([]);
+    setCurrentHintIndex(0);
   };
 
   const handleDifficultyChange = (e) => {
@@ -268,91 +275,94 @@ function App() {
     setSelectedDifficulty(difficulty);
     if (selectedElement && difficulty) {
       setHints(hintsData[selectedElement][difficulty] || []);
+      setCurrentHintIndex(0);
     }
   };
 
   return (
     <div className="App">
-      <h1 className="App-header-title">Head in the Clouds</h1>
-        <p className="App-header-subtitle">
-          Welcome to the Head in the Clouds game!
-        </p>
-      <div className="App-header">
-        
-        <div className="App-header-actions">
+      {currentPage === "main" && (
+        <div className="App-header">
+          <h1 className="App-header-title">Head in the Clouds</h1>
+          <p className="App-header-subtitle">
+            Welcome to the Head in the Clouds game!
+          </p>
+          <div className="App-header-actions">
+            <button
+              className="App-header-actions-roll-dice-button"
+              onClick={handleRollDice}
+            >
+              Roll Dice
+            </button>
+          </div>
+          <div id="dice-result" className="App-header-dice-result">
+            {randomDie !== null && (
+              <p>
+                You rolled: {randomDie.element} -{" "}
+                <span
+                  style={{
+                    color: difficultyColors[randomDie.difficulty],
+                    textShadow:
+                      randomDie.difficulty === "Mystery"
+                        ? "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px purple, 0 0 30px purple, 0 0 40px purple, 0 0 55px purple, 0 0 75px purple"
+                        : "none",
+                  }}
+                >
+                  {randomDie.difficulty} {difficultyPoints[randomDie.difficulty]} points
+                </span>
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+      {currentPage === "hints" && (
+        <div className="App-hints">
+          <p className="App-hints-title">Stuck? Need a hint?</p>
           <button
-            className="App-header-actions-roll-dice-button"
-            onClick={handleRollDice}
+            className="App-header-actions-show-hint-menu"
+            onClick={handleShowHints}
           >
-            Randomize category / difficulty
+            {showHintForm ? "Show Another Hint" : "Yes! I'm stuck"}
           </button>
-        </div>
-        <div id="dice-result" className="App-header-dice-result">
-          {randomDie !== null && (
-            <p>
-              Category: {randomDie.element} -{" "}
-              <span
-                style={{
-                  color: difficultyColors[randomDie.difficulty],
-                  textShadow:
-                    randomDie.difficulty === "Mystery"
-                      ? "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px purple, 0 0 30px purple, 0 0 40px purple, 0 0 55px purple, 0 0 75px purple"
-                      : "none",
-                }}
+          {showHintForm && (
+            <div className="App-hint-form">
+              <select
+                className="App-hint-form-element-select"
+                value={selectedElement}
+                onChange={handleElementChange}
               >
-                {randomDie.difficulty} -{" "}
-                {difficultyPoints[randomDie.difficulty]} points
-              </span>
-            </p>
-          )}
-        </div>
-      </div>
-      <div className="App-hints">
-        <p className="App-hints-title">Stuck? Need a hint?</p>
-        <button
-          className="App-header-actions-show-hint-menu"
-          onClick={handleShowHints}
-        >
-          Yes! I'm stuck
-        </button>
-        {showHintForm && (
-          <div className="App-hint-form">
-            <select
-              className="App-hint-form-element-select"
-              value={selectedElement}
-              onChange={handleElementChange}
-            >
-              <option value="">Select Element</option>
-              {elements.map((element) => (
-                <option key={element} value={element}>
-                  {element}
-                </option>
-              ))}
-            </select>
-            <select
-              className="App-hint-form-difficulty-select"
-              value={selectedDifficulty}
-              onChange={handleDifficultyChange}
-            >
-              <option value="">Select Difficulty</option>
-              {difficulties
-                .filter((difficulty) => difficulty !== "Mystery")
-                .map((difficulty) => (
-                  <option key={difficulty} value={difficulty}>
-                    {difficulty}
+                <option value="">Select Element</option>
+                {elements.map((element) => (
+                  <option key={element} value={element}>
+                    {element}
                   </option>
                 ))}
-            </select>
-            <div className="App-hints-list">
-              {hints.map((hint, index) => (
-                <p key={index} className="App-hints-list-item">
-                  {hint}
-                </p>
-              ))}
+              </select>
+              <select
+                className="App-hint-form-difficulty-select"
+                value={selectedDifficulty}
+                onChange={handleDifficultyChange}
+              >
+                <option value="">Select Difficulty</option>
+                {difficulties
+                  .filter((difficulty) => difficulty !== "Mystery")
+                  .map((difficulty) => (
+                    <option key={difficulty} value={difficulty}>
+                      {difficulty}
+                    </option>
+                  ))}
+              </select>
+              <div className="App-hints-list">
+                {hints.slice(0, currentHintIndex + 1).map((hint, index) => (
+                  <p key={index} className="App-hints-list-item">
+                    {hint}
+                  </p>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
       <div className="App-reviews">
         <p className="App-header-instructions">Please review our game here</p>
         <a
@@ -363,6 +373,20 @@ function App() {
         >
           Go to Link
         </a>
+      </div>
+      <div className="App-footer">
+        <button
+          className={`App-footer-button ${currentPage === "main" ? "active" : ""}`}
+          onClick={() => setCurrentPage("main")}
+        >
+          Main Page
+        </button>
+        <button
+          className={`App-footer-button ${currentPage === "hints" ? "active" : ""}`}
+          onClick={() => setCurrentPage("hints")}
+        >
+          Hints Page
+        </button>
       </div>
     </div>
   );

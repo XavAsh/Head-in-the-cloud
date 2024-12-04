@@ -243,3 +243,37 @@ body, html {
     padding: 4px;
   }
 }
+
+/*============================= Floating Footer ========================*/
+/* Floating Footer */
+.App-footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  z-index: 1000;
+}
+
+.App-footer-button {
+  background: #5e17eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin: 0 5px;
+}
+
+.App-footer-button:hover {
+  background: #4d13c1;
+}
+
+.App-footer-button.active {
+  background: #4d13c1;
+  transform: scale(1.1);
+}
