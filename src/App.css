@@ -1,119 +1,245 @@
-/* Base styles */
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #a204ce 0%, #c3cfe2 100%);
-  font-family: "Arial", sans-serif;
-  padding: 20px;
+/* General Reset and Base Styles */
+body, html {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #5e17eb 0%, #c3cfe2 100%);
+  font-family: "Arial", sans-serif;
+  overflow-y: auto;
+}
+
+/* Header Section */
 .App-header {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
+  margin-bottom: 20px;
 }
 
 .App-header-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 10px 15px;
   color: #333;
   margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .App-header-subtitle {
   font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 10px;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .App-header-actions {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .App-header-actions-roll-dice-button {
-  background: #4caf50;
+  background: #5e17eb;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
+  max-width: 200px;
   transition: background 0.3s ease;
 }
 
 .App-header-actions-roll-dice-button:hover {
-  background: #45a049;
+  background: #4d13c1;
 }
 
 .App-header-dice-result {
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 15px;
+}
+
+/* Hints Section */
+.App-hints {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.App-hints-title {
   font-size: 1.2rem;
   color: #333;
-  margin-top: 20px;
-  animation: fadeIn 0.5s ease-in-out;
+  margin-bottom: 10px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.App-header-actions-show-hint-menu {
+  background: #5e17eb;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  transition: background 0.3s ease;
 }
 
-/* Responsive styles */
+.App-header-actions-show-hint-menu:hover {
+  background: #4d13c1;
+}
+
+.App-hint-form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-hint-form-element-select,
+.App-hint-form-difficulty-select {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Hints List */
+.App-hints-list {
+  margin-top: 15px;
+  text-align: left;
+  color: #333;
+}
+
+.App-hints-list-item {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* Reviews Section */
+.App-reviews {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.App-header-link-button {
+  background: #5e17eb;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.App-header-link-button:hover {
+  background: #4d13c1;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-  .App-header-title {
-    font-size: 1.8rem;
-  }
-
-  .App-header-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .App-header-dice-result {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
   .App-header-title {
     font-size: 1.5rem;
   }
 
-  .App-header-subtitle {
-    font-size: 0.8rem;
-  }
-
-  .App-header-dice-result {
+  .App-header-subtitle,
+  .App-header-dice-result,
+  .App-hints-title,
+  .App-hints-list-item {
     font-size: 0.9rem;
   }
 
-  .App-header-actions-roll-dice-button {
-    padding: 8px 16px;
+  .App-header-actions-roll-dice-button,
+  .App-header-actions-show-hint-menu {
+    padding: 8px 12px;
+  }
+
+  .App-hint-form-element-select,
+  .App-hint-form-difficulty-select {
+    font-size: 0.9rem;
+    padding: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header,
+  .App-hints,
+  .App-reviews {
+    padding: 10px;
+  }
+
+  .App-header-title {
+    font-size: 1.3rem;
+  }
+
+  .App-header-subtitle,
+  .App-header-dice-result,
+  .App-hints-title,
+  .App-hints-list-item {
+    font-size: 0.8rem;
+  }
+
+  .App-header-actions-roll-dice-button,
+  .App-header-actions-show-hint-menu {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .App-hint-form-element-select,
+  .App-hint-form-difficulty-select {
+    font-size: 0.8rem;
+    padding: 5px;
   }
 }
 
 @media (max-width: 320px) {
   .App-header-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
-  .App-header-subtitle {
+  .App-header-subtitle,
+  .App-header-dice-result,
+  .App-hints-title,
+  .App-hints-list-item {
     font-size: 0.7rem;
   }
 
-  .App-header-dice-result {
-    font-size: 0.8rem;
+  .App-header-actions-roll-dice-button,
+  .App-header-actions-show-hint-menu {
+    padding: 5px 8px;
+    font-size: 0.7rem;
   }
 
-  .App-header-actions-roll-dice-button {
-    padding: 6px 12px;
+  .App-hint-form-element-select,
+  .App-hint-form-difficulty-select {
+    font-size: 0.7rem;
+    padding: 4px;
   }
 }
