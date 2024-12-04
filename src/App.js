@@ -5,18 +5,18 @@ function App() {
   const [randomDie, setRandomDie] = useState(null);
 
   const elements = [
-    "Algorithms",
+    /*"Algorithms",
     "Brand Style Guide",
     "Conversion Funnels:",
-    "Cybersecurity",
+    "Cybersecurity",*/
     "Editorial ",
     "Green IT and Eco Design",
     "HTML/CSS",
     "Relational Databases",
-    "Soft Skills",
+    /*"Soft Skills",
     "Traffic Acquisition",
     "Using the Internet",
-    "Wireframes",
+    "Wireframes",*/
   ];
 
   const difficulties = ["Easy", "Medium", "Hard", "Mystery"];
