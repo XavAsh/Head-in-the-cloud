@@ -276,7 +276,17 @@ function App() {
   };
 
   return (
+
     <div className="App">
+      <video
+    autoPlay
+    loop
+    muted
+    className="App-video-background"
+  >
+    <source src={`${process.env.PUBLIC_URL}/videos/cloudbackground.mp4`} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
       {currentPage === "main" && (
         <div className="App-header">
           <h1 className="App-header-title">Head in the Clouds</h1>
@@ -396,6 +406,7 @@ function App() {
         </button>
       </div>
     </div>
+
   );
 }
 

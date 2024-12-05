@@ -4,18 +4,38 @@ body, html {
   padding: 0;
   box-sizing: border-box;
 }
-
 .App {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 50px;
   min-height: 100vh;
-  padding: 20px;
-  background: linear-gradient(135deg, #5e17eb 0%, #c3cfe2 100%);
+  width: 95%;
+  margin-left: 10px;
+  border-radius: 10px;
   font-family: "Arial", sans-serif;
   overflow-y: auto;
+  position: relative; /* Important for layering content */
 }
+
+.App-video-background {
+  position: fixed; /* Ensure it stays in the background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire screen */
+  z-index: -1; /* Places the video below the content */
+}
+
+.App-content {
+  z-index: 1; /* Ensure content appears above the video */
+  color: white; /* Adjust text color for visibility on the video */
+  text-align: center;
+  padding: 20px;
+}
+
 
 /* Header Section */
 .App-header {
@@ -24,7 +44,7 @@ body, html {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
+  width: 90%;
   max-width: 450px;
   margin-bottom: 20px;
 }
@@ -79,9 +99,8 @@ body, html {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
   max-width: 450px;
-  margin-top: 15px;
+  width: 90%;
   text-align: center;
 }
 
@@ -143,11 +162,14 @@ body, html {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  padding: 5px;
   z-index: 1000;
-  animation: bounce 2s infinite, colorChange 5s infinite;
+  animation: bounce 2s infinite;
 }
 
 @keyframes expand {
@@ -307,6 +329,9 @@ body, html {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  padding: 10px;
+  border-radius: 10px;
+    background-color: white !important;
   justify-content: center;
   align-items: center;
   background: transparent;
