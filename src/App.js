@@ -28,9 +28,9 @@ function App() {
   const difficulties = ["Easy", "Medium", "Hard", "Mystery"];
 
   const difficultyColors = {
-    Easy: "green",
-    Medium: "orange",
-    Hard: "red",
+    Easy: "#2A9D8F",
+    Medium: "#F4A261",
+    Hard: "#E76F51",
     Mystery: "purple",
   };
 
@@ -42,7 +42,7 @@ function App() {
   };
 
   const hintsData = {
-    "Algorithms": {
+    Algorithms: {
       Easy: [
         "Hint 1: It can follow instructions.",
         "Hint 2: Often seen in sci-fi movies.",
@@ -76,7 +76,7 @@ function App() {
         "Hint 3: Synonym for 'sustainable' or 'green.'",
       ],
     },
-    "Editorial": {
+    Editorial: {
       Easy: [
         "Hint 1: A website where people write articles or share personal stories.",
         "Hint 2: Often updated regularly with new content.",
@@ -161,7 +161,7 @@ function App() {
         "Hint 3: Essential for maintaining a consistent identity across media.",
       ],
     },
-    "Wireframes": {
+    Wireframes: {
       Easy: [
         "Hint 1: It’s about creating user-friendly experiences.",
         "Hint 2: Short for 'User Experience.'",
@@ -178,7 +178,7 @@ function App() {
         "Hint 3: Often associated with usability and accessibility.",
       ],
     },
-    "Cybersecurity": {
+    Cybersecurity: {
       Easy: [
         "Hint 1: You need it to access your accounts.",
         "Hint 2: It should always be unique and strong.",
@@ -256,7 +256,9 @@ function App() {
   };
 
   const handleShowHints = () => {
-    setCurrentHintIndex((prevIndex) => Math.min(prevIndex + 1, hints.length - 1));
+    setCurrentHintIndex((prevIndex) =>
+      Math.min(prevIndex + 1, hints.length - 1)
+    );
   };
 
   const handleElementChange = (e) => {
@@ -276,17 +278,14 @@ function App() {
   };
 
   return (
-
     <div className="App">
-      <video
-    autoPlay
-    loop
-    muted
-    className="App-video-background"
-  >
-    <source src={`${process.env.PUBLIC_URL}/videos/cloudbackground.mp4`} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+      <video autoPlay loop muted className="App-video-background">
+        <source
+          src={`${process.env.PUBLIC_URL}/videos/cloudbackground.mp4`}
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
       {currentPage === "main" && (
         <div className="App-header">
           <h1 className="App-header-title">Head in the Clouds</h1>
@@ -304,7 +303,7 @@ function App() {
           <div id="dice-result" className="App-header-dice-result">
             {randomDie !== null && (
               <p>
-                You rolled: {randomDie.element} -{" "}
+                You got: {randomDie.element} -{" "}
                 <span
                   style={{
                     color: difficultyColors[randomDie.difficulty],
@@ -314,7 +313,8 @@ function App() {
                         : "none",
                   }}
                 >
-                  {randomDie.difficulty} {difficultyPoints[randomDie.difficulty]} points
+                  {randomDie.difficulty}{" "}
+                  {difficultyPoints[randomDie.difficulty]} points
                 </span>
               </p>
             )}
@@ -322,8 +322,8 @@ function App() {
         </div>
       )}
       {currentPage === "hints" && (
-          <div className="App-hints">
-          <p className="App-hints-title">Stuck? Need a hint?</p>
+        <div className="App-hints">
+          <h1 className="App-header-title">Stuck? Need a hint?</h1>
           <div className="App-hint-form">
             <select
               className="App-hint-form-element-select"
@@ -351,62 +351,190 @@ function App() {
                   </option>
                 ))}
             </select>
-           
+
             <div className="App-hints-list">
               {hints.slice(0, currentHintIndex + 1).map((hint, index) => (
                 <p key={index} className="App-hints-list-item">
                   {hint}
                 </p>
-                
               ))}
-              
             </div>
             {currentHintIndex < hints.length - 1 && (
-      <button
-        className="App-header-actions-show-hint-menu"
-        onClick={handleShowHints}
-      >
-        {"Show Another Hint"}
-      </button>
-    )}
+              <button
+                className="App-header-actions-show-hint-menu"
+                onClick={handleShowHints}
+              >
+                {"Show Another Hint"}
+              </button>
+            )}
           </div>
         </div>
       )}
-            <img
+      {currentPage === "rules" && (
+        <div className="App-rules">
+          <h1 className="App-header-title">Rules of the game</h1>
+          <h2>
+            <strong>Game Title: Head in the Clouds</strong>
+          </h2>
+
+          <h3>
+            <strong>
+              !! WARNING THESE RULES ARE FOR ADVANCED ENGLISH SPEAKERS !!
+            </strong>
+          </h3>
+
+          <h3>
+            <strong>Objective of the Game</strong>
+          </h3>
+          <p>
+            The objective of the game is to find your identity which is written
+            on your post-it on your head.
+          </p>
+
+          <h3>
+            <strong>Game Components</strong>
+          </h3>
+          <ul>
+            <li>
+              A box for the packaging of the game (with a QR CODE on the inside
+              of the lead and rules on the bottom)
+            </li>
+            <li>
+              Cards for each level and each topic (12 topics x 4 levels +
+              creative cards)
+            </li>
+            <li>Virtual dice on your smartphone</li>
+            <li>
+              Post-it notes or other materials to write the players' identities
+              and stick them on each player's forehead
+            </li>
+          </ul>
+
+          <h3>
+            <strong>Setup</strong>
+          </h3>
+
+          <li>
+            Create 12 stacks of cards, one for each theme (e.g., cybersecurity,
+            algorithms, etc.).
+          </li>
+          <li>
+            Choose the person who is the least comfortable in English to start
+            the game.
+          </li>
+
+          <h3>
+            <strong>How to Play</strong>
+          </h3>
+          <ol>
+            <li>
+              <strong>Start the game</strong>
+              <ul>
+                <li>
+                  After selecting the first person to play, the first person
+                  says the difficulty he wants out loud, either easy, medium or
+                  hard, then the person to the left of the first player picks a
+                  card and writes the word of the card onto a post-it note, the
+                  player can only look at the card category, and then he sticks
+                  the post it to his forehead without looking at the word.
+                </li>
+                <li>
+                  Repeat the action so that all players have an 'identity' and
+                  you can then start the game.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Turn Structure</strong>
+              <ul>
+                <li>
+                  Each player takes turns asking yes/no questions to narrow down
+                  the possibilities until they are more or less sure of the
+                  word. Then they get 2-3 tries to guess the word.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Actions</strong>
+              <ul>
+                <li>Ask a yes/no question.</li>
+                <li>
+                  Guess the specific word if you think you have found your
+                  identity.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <h3>
+            <strong>Winning the Game</strong>
+          </h3>
+          <p>
+            The player guesses the word right and amasses a total of 30 points.
+          </p>
+          <p>As a reminder, each level earns you the following points:</p>
+          <ul>
+            <li>
+              <strong>Easy</strong> = 5 points
+            </li>
+            <li>
+              <strong>Medium</strong> = 10 points
+            </li>
+            <li>
+              <strong>Hard</strong> = 15 points
+            </li>
+            <li>
+              <strong>Mystery</strong> = x2 of your level
+            </li>
+          </ul>
+        </div>
+      )}
+      <img
         src={`${process.env.PUBLIC_URL}/images/popup.png`}
         alt="Popup"
         className="popup-image"
         onClick={() => setShowReviewSection(!showReviewSection)}
       />
-           {showReviewSection && (
-        <div className={`App-reviews ${showReviewSection ? 'expanded' : ''}`}>
-        <p className="App-header-instructions">Please review our game!</p>
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLScV0t29HsNYqeNbGqbMbd-kUC1CmXCOHO94gWKXzeAXpgdCww/viewform?pli=1&usp=pp_url"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="App-header-link-button"
-        >
-          Go to Link
-        </a>
-      </div>
+      {showReviewSection && (
+        <div className={`App-reviews ${showReviewSection ? "expanded" : ""}`}>
+          <p className="App-header-instructions">Please review our game!</p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScV0t29HsNYqeNbGqbMbd-kUC1CmXCOHO94gWKXzeAXpgdCww/viewform?pli=1&usp=pp_url"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="App-header-link-button"
+          >
+            Go to Link
+          </a>
+        </div>
       )}
       <div className="App-footer">
         <button
-          className={`App-footer-button ${currentPage === "main" ? "active" : ""}`}
+          className={`App-footer-button ${
+            currentPage === "main" ? "active" : ""
+          }`}
           onClick={() => setCurrentPage("main")}
         >
           Main Page
         </button>
         <button
-          className={`App-footer-button ${currentPage === "hints" ? "active" : ""}`}
+          className={`App-footer-button ${
+            currentPage === "hints" ? "active" : ""
+          }`}
           onClick={() => setCurrentPage("hints")}
         >
           Hints Page
         </button>
+        <button
+          className={`App-footer-button ${
+            currentPage === "rules" ? "active" : ""
+          }`}
+          onClick={() => setCurrentPage("rules")}
+        >
+          Rules Page
+        </button>
       </div>
     </div>
-
   );
 }
 
