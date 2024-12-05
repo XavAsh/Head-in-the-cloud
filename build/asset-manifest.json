@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Head-in-the-clouds/static/css/main.38c4e4f7.css",
-    "main.js": "/Head-in-the-clouds/static/js/main.4b4b3b45.js",
+    "main.css": "/Head-in-the-clouds/static/css/main.5f36b330.css",
+    "main.js": "/Head-in-the-clouds/static/js/main.33d965e6.js",
     "static/js/453.81420017.chunk.js": "/Head-in-the-clouds/static/js/453.81420017.chunk.js",
     "index.html": "/Head-in-the-clouds/index.html",
-    "main.38c4e4f7.css.map": "/Head-in-the-clouds/static/css/main.38c4e4f7.css.map",
-    "main.4b4b3b45.js.map": "/Head-in-the-clouds/static/js/main.4b4b3b45.js.map",
+    "main.5f36b330.css.map": "/Head-in-the-clouds/static/css/main.5f36b330.css.map",
+    "main.33d965e6.js.map": "/Head-in-the-clouds/static/js/main.33d965e6.js.map",
     "453.81420017.chunk.js.map": "/Head-in-the-clouds/static/js/453.81420017.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.38c4e4f7.css",
-    "static/js/main.4b4b3b45.js"
+    "static/css/main.5f36b330.css",
+    "static/js/main.33d965e6.js"
   ]
 }

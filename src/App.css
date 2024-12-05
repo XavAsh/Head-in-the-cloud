@@ -137,17 +137,73 @@ body, html {
   margin-bottom: 5px;
 }
 
-/* Reviews Section */
+/*=================== Reviews Section ======================*/
+
+.popup-image {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 1000;
+  animation: bounce 2s infinite, colorChange 5s infinite;
+}
+
+@keyframes expand {
+  0% {
+    width: 0;
+    height: 0;
+    padding: 0;
+  }
+  100% {
+    width: 200px;
+    height: 80px;
+    padding: 20px;
+  }
+}
+
 .App-reviews {
+  position: fixed;
+  bottom: 80px; /* Adjust this value to move the popup higher */
+  left: 20px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.9);
-  padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
-  margin-top: 15px;
+  transform-origin: bottom left;
+  z-index: 999;
 }
+
+.App-reviews.expanded {
+  animation: expand 0.5s forwards;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+
+/*================== FOOTER link ====================*/
 
 .App-header-link-button {
   background: #5e17eb;
@@ -245,7 +301,6 @@ body, html {
 }
 
 /*============================= Floating Footer ========================*/
-/* Floating Footer */
 .App-footer {
   position: fixed;
   bottom: 20px;
@@ -259,21 +314,30 @@ body, html {
 }
 
 .App-footer-button {
-  background: #5e17eb;
-  color: white;
-  border: none;
+  background: white;
+  color: #5e17eb;
+  border: 2px solid #5e17eb;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-  margin: 0 5px;
-}
-
-.App-footer-button:hover {
-  background: #4d13c1;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .App-footer-button.active {
-  background: #4d13c1;
-  transform: scale(1.1);
+  background: #5e17eb;
+  color: white;
+}
+
+.App-footer-button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.App-footer-button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.App-footer-button:not(:last-child) {
+  border-right: none;
 }

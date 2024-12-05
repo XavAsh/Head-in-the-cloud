@@ -3,12 +3,12 @@ import React, { useState } from "react";
 
 function App() {
   const [randomDie, setRandomDie] = useState(null);
-  const [showHintForm, setShowHintForm] = useState(false);
   const [selectedElement, setSelectedElement] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState("main");
+  const [showReviewSection, setShowReviewSection] = useState(false);
 
   const elements = [
     "Algorithms",
@@ -256,11 +256,7 @@ function App() {
   };
 
   const handleShowHints = () => {
-    if (!showHintForm) {
-      setShowHintForm(true);
-    } else {
-      setCurrentHintIndex((prevIndex) => Math.min(prevIndex + 1, hints.length - 1));
-    }
+    setCurrentHintIndex((prevIndex) => Math.min(prevIndex + 1, hints.length - 1));
   };
 
   const handleElementChange = (e) => {
@@ -292,7 +288,7 @@ function App() {
               className="App-header-actions-roll-dice-button"
               onClick={handleRollDice}
             >
-              Roll Dice
+              Randomize
             </button>
           </div>
           <div id="dice-result" className="App-header-dice-result">
@@ -316,55 +312,65 @@ function App() {
         </div>
       )}
       {currentPage === "hints" && (
-        <div className="App-hints">
+          <div className="App-hints">
           <p className="App-hints-title">Stuck? Need a hint?</p>
-          <button
-            className="App-header-actions-show-hint-menu"
-            onClick={handleShowHints}
-          >
-            {showHintForm ? "Show Another Hint" : "Yes! I'm stuck"}
-          </button>
-          {showHintForm && (
-            <div className="App-hint-form">
-              <select
-                className="App-hint-form-element-select"
-                value={selectedElement}
-                onChange={handleElementChange}
-              >
-                <option value="">Select Element</option>
-                {elements.map((element) => (
-                  <option key={element} value={element}>
-                    {element}
+          <div className="App-hint-form">
+            <select
+              className="App-hint-form-element-select"
+              value={selectedElement}
+              onChange={handleElementChange}
+            >
+              <option value="">Select Element</option>
+              {elements.map((element) => (
+                <option key={element} value={element}>
+                  {element}
+                </option>
+              ))}
+            </select>
+            <select
+              className="App-hint-form-difficulty-select"
+              value={selectedDifficulty}
+              onChange={handleDifficultyChange}
+            >
+              <option value="">Select Difficulty</option>
+              {difficulties
+                .filter((difficulty) => difficulty !== "Mystery")
+                .map((difficulty) => (
+                  <option key={difficulty} value={difficulty}>
+                    {difficulty}
                   </option>
                 ))}
-              </select>
-              <select
-                className="App-hint-form-difficulty-select"
-                value={selectedDifficulty}
-                onChange={handleDifficultyChange}
-              >
-                <option value="">Select Difficulty</option>
-                {difficulties
-                  .filter((difficulty) => difficulty !== "Mystery")
-                  .map((difficulty) => (
-                    <option key={difficulty} value={difficulty}>
-                      {difficulty}
-                    </option>
-                  ))}
-              </select>
-              <div className="App-hints-list">
-                {hints.slice(0, currentHintIndex + 1).map((hint, index) => (
-                  <p key={index} className="App-hints-list-item">
-                    {hint}
-                  </p>
-                ))}
-              </div>
+            </select>
+           
+            <div className="App-hints-list">
+              {hints.slice(0, currentHintIndex + 1).map((hint, index) => (
+                <p key={index} className="App-hints-list-item">
+                  {hint}
+                </p>
+                
+              ))}
+              
             </div>
-          )}
+            {currentHintIndex < hints.length - 1 && (
+      <button
+        className="App-header-actions-show-hint-menu"
+        onClick={handleShowHints}
+      >
+        {"Show Another Hint"}
+      </button>
+    )}
+          </div>
         </div>
       )}
-      <div className="App-reviews">
-        <p className="App-header-instructions">Please review our game here</p>
+            <img
+        src={`${process.env.PUBLIC_URL}/images/popup.png`}
+        alt="Popup"
+        className="popup-image"
+        onClick={() => setShowReviewSection(!showReviewSection)}
+      />
+           {showReviewSection && (
+        <div className={`App-reviews ${showReviewSection ? 'expanded' : ''}`}>
+        <p className="App-header-instructions">Please review our game!</p>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLScV0t29HsNYqeNbGqbMbd-kUC1CmXCOHO94gWKXzeAXpgdCww/viewform?pli=1&usp=pp_url"
           target="_blank"
@@ -374,6 +380,7 @@ function App() {
           Go to Link
         </a>
       </div>
+      )}
       <div className="App-footer">
         <button
           className={`App-footer-button ${currentPage === "main" ? "active" : ""}`}
