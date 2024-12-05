@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Head-in-the-clouds/static/css/main.a350a392.css",
-    "main.js": "/Head-in-the-clouds/static/js/main.d522c33b.js",
+    "main.js": "/Head-in-the-clouds/static/js/main.9da47ee8.js",
     "static/js/453.81420017.chunk.js": "/Head-in-the-clouds/static/js/453.81420017.chunk.js",
     "index.html": "/Head-in-the-clouds/index.html",
     "main.a350a392.css.map": "/Head-in-the-clouds/static/css/main.a350a392.css.map",
-    "main.d522c33b.js.map": "/Head-in-the-clouds/static/js/main.d522c33b.js.map",
+    "main.9da47ee8.js.map": "/Head-in-the-clouds/static/js/main.9da47ee8.js.map",
     "453.81420017.chunk.js.map": "/Head-in-the-clouds/static/js/453.81420017.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a350a392.css",
-    "static/js/main.d522c33b.js"
+    "static/js/main.9da47ee8.js"
   ]
 }
